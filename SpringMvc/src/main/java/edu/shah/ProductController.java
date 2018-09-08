@@ -8,24 +8,22 @@ import edu.shah.model.ProductDao;
 
 @Controller
 public class ProductController {
-	ProductDao productdao=new ProductDao();
+	ProductDao productdao = new ProductDao();
 
-	
-	@GetMapping(value="/products",params="id")
+	@GetMapping(value = "/products", params = "id")
 	public String getProductbyId(@RequestParam int id, Model model) {
-		if(productdao.getProductById(id)==null)
-		{		
+		if (productdao.getProductById(id) == null) {
 			model.addAttribute("products", productdao.getAllProducts());
 			return "allProducts";
 		}
-			model.addAttribute("products",productdao.getProductById(id));
-			return "product";
+		model.addAttribute("products", productdao.getProductById(id));
+		return "product";
 	}
-	@GetMapping(value ="/products")
+
+	@GetMapping(value = "/products")
 	public String allProducts(Model model) {
-	model.addAttribute("products", new ProductDao().getAllProducts());
-	return "allProducts";
+		model.addAttribute("products", new ProductDao().getAllProducts());
+		return "allProducts";
 	}
-	
-	
+
 }
