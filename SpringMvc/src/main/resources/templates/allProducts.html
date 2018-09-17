@@ -23,7 +23,7 @@
 					<td th:text="${{product.name}}">Default Name</td>
 					<td th:text="${{product.description}}">Default Description</td>
 					<td th:text="${{product.category}}">Default Category</td>
-					<td th:text="${{product.cost}}">Default Cost</td>
+					<td th:text="${{'$'+product.cost}}">Default Cost</td>
 					<td th:text="${{product.location}}">Default Location</td>
 					<td th:text="${{product.discount}}">Default Discount</td>
 				</tr>
