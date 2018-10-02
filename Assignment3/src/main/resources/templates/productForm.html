@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<form action="#" th:action="@{/addProduct}" th:object="${product}"
+			method="post">
+			<table>
+				<tr>
+					<td><H3>
+							<i>ID</i>
+						</H3></td>
+					<td><input type="text" th:value="${ID}" th:field="*{id}"></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<I>ProductName</I>
+						</h3></td>
+					<td><input type="text" th:text="${Name}" th:value="${Name}"
+						th:field="*{name}"></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<I>ProductDiscription</I>
+						</h3></td>
+					<td><input type="text" th:text="${Description}"
+						th:value="${Description}" th:field="*{description}"></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<I>ProductCost</I>
+						</h3></td>
+					<td><input type="text" th:text="${Cost}" th:value="${Cost}"
+						th:field="*{cost}"></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<i>Category</i>
+						</h3>
+						<ul>
+							<li th:each="aCategory : ${allCategory}"><input type="radio"
+								name="Category" th:field="*{category}" th:value="${aCategory}" />
+								<label th:for="${#ids.prev('category')}" th:text="${aCategory}">Category</label>
+							</li>
+
+						</ul></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<i>WareHouse</i>
+						</h3>
+						<ul>
+							<li th:each="aWarehouse : ${allWarehouse}"><input
+								type="checkbox" name="Warehouse" th:field="*{location}"
+								th:value="${aWarehouse}" /> <label
+								th:for="${#ids.prev('location')}" th:text="${aWarehouse}">Location</label>
+							</li>
+
+						</ul></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<i>Discount</i>
+						</h3>
+						<ul>
+							<li th:each="aDiscount : ${allDiscount}"><input type="radio"
+								name="Discount" th:field="*{discount}" th:value="${aDiscount}" />
+								<label th:for="${#ids.prev('discount')}" th:text="${aDiscount}">Discount</label>
+							</li>
+						</ul></td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit">Submit</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<a href="http://localhost:8080/">Home</a>
+		<a href="http://localhost:8080/logout">Log Out</a>
+	</div>
+</body>
+</html>

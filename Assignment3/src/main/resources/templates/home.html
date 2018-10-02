@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<form action="#" th:action="@{/home}" th:object="${product}" method="post">
+			<table>
+				<tr>
+					<td><H3>
+							<i>ID</i>
+						</H3></td>
+					<td><input type="text" th:value="${ID}" th:field="*{id}"></td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit">Submit</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<p>
+			<a href="http://localhost:8080/addProduct">AddProduct</a>
+		</p>
+		<p>
+			<a href="http://localhost:8080/deleteProduct">DeleteProduct</a>
+		</p>
+		<p>
+			<a href="http://localhost:8080/listProducts">Prduct List</a>
+		</p>
+		<p>
+			<a href="http://localhost:8080/logout">Log Out</a>
+		</p>
+	</div>
+
+</body>
+</html>

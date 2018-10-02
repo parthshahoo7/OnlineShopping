@@ -1,5 +1,6 @@
 package edu.shah.web;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.validation.Valid;
@@ -31,24 +32,39 @@ public class ProductController {
 	@Autowired
 	private CategoryDao categoryDao;
 
-///=========================Default Page===================================================
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+//==========================RequestMapping for "/403"=====================================
+	@RequestMapping(value="/403",method=RequestMethod.GET)
+	public String accessDenied(Model model, Principal principal) {
+		String username=principal.getName();
+		model.addAttribute("message", "Sorry " + username + "You don't have privileges to view this page !!!");
+		return "error/403";
+	}
+
+	
+//==========================Default Page===================================================
+	
+	@GetMapping("/")
+	public String gethomePage() {
+		return "redirect:/home";
+	}
+	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String searchProductForm(@Valid Product product, BindingResult bindingResult, Model model) {
 		return "home";
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
 	public String searchProduct(@Valid Product product, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "home";
 		}
-		if (productDao.getProductById(product.getId()) == null) {
+		/*if (productDao.getProductById(product.getId()) == null) {
 			model.addAttribute("products", productDao.getAllProducts());
 			return "allProducts";
-		}
-		model.addAttribute("products", productDao.getProductById(product.getId()));
-		return "product";
+		}*/
+		//model.addAttribute("products", productDao.getProductById(product.getId()));
+		return "redirect:/product?id=" + product.getId();
 	}
 
 //=======================List Product=======================================================

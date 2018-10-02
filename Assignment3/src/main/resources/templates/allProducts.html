@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<body>
+	<div class="productlist" th:unless="${#lists.isEmpty(products)}">
+
+		<h2>The list of Products</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Cost</th>
+					<th>Location</th>
+					<th>Discount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${products}">
+					<td th:text="${{product.id}}">Default ID</td>
+					<td th:text="${{product.name}}">Default Name</td>
+					<td th:text="${{product.description}}">Default Description</td>
+					<td th:text="${{product.category}}">Default Category</td>
+					<td th:text="${{'$'+product.cost}}">Default Cost</td>
+					<td th:text="${{product.location}}">Default Location</td>
+					<td th:text="${{product.discount}}">Default Discount</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="http://localhost:8080/">Home</a>
+		<a href="http://localhost:8080/logout">Log Out</a>
+	</div>
+</body>
+</html>

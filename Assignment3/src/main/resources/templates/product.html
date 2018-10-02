@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<body>
+	<h2>The Selected Product is:</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Category</th>
+				<th>Cost</th>
+				<th>Location</th>
+				<th>Discount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td th:text="${{products.id}}">Default ID</td>
+				<td th:text="${{products.name}}">Default Name</td>
+				<td th:text="${{products.description}}">Default Description</td>
+				<td th:text="${{products.category}}">Default Category</td>
+				<td th:text="${{'$'+products.cost}}">Default Cost</td>
+				<td th:text="${{products.location}}">Default Location</td>
+				<td th:text="${{products.discount}}">Default Discount</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="http://localhost:8080/logout">Log Out</a>
+	<a href="http://localhost:8080/">Home</a>
+</body>
+</html>
