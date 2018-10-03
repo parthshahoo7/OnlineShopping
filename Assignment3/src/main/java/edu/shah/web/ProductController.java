@@ -33,21 +33,20 @@ public class ProductController {
 	private CategoryDao categoryDao;
 
 //==========================RequestMapping for "/403"=====================================
-	@RequestMapping(value="/403",method=RequestMethod.GET)
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model, Principal principal) {
-		String username=principal.getName();
+		String username = principal.getName();
 		model.addAttribute("message", "Sorry " + username + "You don't have privileges to view this page !!!");
 		return "error/403";
 	}
 
-	
 //==========================Default Page===================================================
-	
+//	Add this function to set home page 
 	@GetMapping("/")
 	public String gethomePage() {
 		return "redirect:/home";
 	}
-	
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String searchProductForm(@Valid Product product, BindingResult bindingResult, Model model) {
 		return "home";
@@ -59,11 +58,6 @@ public class ProductController {
 		if (bindingResult.hasErrors()) {
 			return "home";
 		}
-		/*if (productDao.getProductById(product.getId()) == null) {
-			model.addAttribute("products", productDao.getAllProducts());
-			return "allProducts";
-		}*/
-		//model.addAttribute("products", productDao.getProductById(product.getId()));
 		return "redirect:/product?id=" + product.getId();
 	}
 
