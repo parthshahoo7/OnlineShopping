@@ -6,14 +6,14 @@
 </head>
 <body>
 	<div>
-		<form action="#" th:action="@{/deleteProduct}" th:object="${product}"
+		<form action="#" th:action="@{/deleteCustomer}" th:object="${account}"
 			method="post">
 			<table>
 				<tr>
 					<td><H3>
 							<i>ID</i>
 						</H3></td>
-					<td><input type="text" th:value="${ID}" th:field="*{id}"></td>
+					<td><input type="text" th:value="${email}" th:field="*{email}"></td>
 				</tr>
 				<tr>
 					<td>

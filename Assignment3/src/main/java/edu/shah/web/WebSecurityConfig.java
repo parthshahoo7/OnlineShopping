@@ -1,5 +1,8 @@
 package edu.shah.web;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,18 +16,23 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Autowired
+	private DataSource dataSource;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().antMatchers("/", "/login", "/home", "/listProducts/**").permitAll()
 				.antMatchers("/addProduct").hasAnyRole("EMP", "ADMIN").antMatchers("/deleteProduct").hasAnyRole("ADMIN")
-				.antMatchers("/prduct").hasAnyRole("CUSTOMER").anyRequest().authenticated().and().exceptionHandling()
-				.accessDeniedPage("/403").and().formLogin().failureUrl("/login?error").defaultSuccessUrl("/home")
-				.loginPage("/login").permitAll().and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
+				.antMatchers("/product").hasAnyRole("CUSTOMER").antMatchers("/register/**").permitAll()
+				.antMatchers("/403").permitAll().anyRequest().authenticated().and().formLogin()
+				.failureUrl("/login?error").defaultSuccessUrl("/registerHome").loginPage("/login").permitAll().and()
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
 				.permitAll();
 	}
-
-	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,6 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				"CUSTOMER");
 		auth.inMemoryAuthentication().withUser("user4@mail.com").password(passwordEncoder.encode("user4"))
 				.roles("CUSTOMER");
+		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder)
+				.usersByUsernameQuery("select email,password,active from inventorydb.account where email=?")
+				.authoritiesByUsernameQuery("select email,role from inventorydb.authority where email=?");
 	}
 
 	@Bean(name = "passwordEncoder")

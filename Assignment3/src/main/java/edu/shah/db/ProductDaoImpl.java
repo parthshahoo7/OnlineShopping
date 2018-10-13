@@ -33,7 +33,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product createProduct(Product product) {
+	public Product createProduct(final Product product) {
 		// TODO Auto-generated method stub
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setIsolationLevel(TransactionDefinition.ISOLATION_REPEATABLE_READ);

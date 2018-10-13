@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+th, td {
+	padding: 5px;
+}
+
+td span {
+	font-size: 90%;
+	font-style: italic;
+	color: red;
+}
+
+.error {
+	color: red;
+	font-style: italic;
+}
+</style>
+</head>
+<body>
+	<div>
+		<form action="#" th:action="@{/register}" th:object="${webAccount}"
+			method="post">
+			<table>
+				<tr>
+					<td><H3>
+							<i>UserName</i>
+						</H3></td>
+					<td><input type="text" th:value="${userName}"
+						th:field="*{account.userName}"></td>
+					<td><span th:if="${#fields.hasErrors('account.userName')}"
+						th:errors="*{account.userName}"></span></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<I>Address</I>
+						</h3></td>
+					<td><input type="text" th:text="${adress}"
+						th:value="${address}" th:field="*{account.address}"></td>
+					<td><span th:if="${#fields.hasErrors('account.address')}"
+						th:errors="*{account.address}"></span></td>
+
+				</tr>
+				<tr>
+					<td><h3>
+							<I>Password</I>
+						</h3></td>
+					<td><input type="password" th:text="${Password}"
+						th:field="*{password}"></td>
+					<td><span th:if="${#fields.hasErrors('password')}"
+						th:errors="*{password}"> </span></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<I>ConfirmPassword</I>
+						</h3></td>
+					<td><input type="password" th:text="${confimPassword}"
+						th:field="*{confimPassword}"></td>
+					<td><span th:if="${#fields.hasErrors('confimPassword')}"
+						th:errors="*{confimPassword}"></span></td>
+				</tr>
+				<tr>
+					<td><h3>
+							<I>Email</I>
+						</h3></td>
+					<td><input type="text" th:text="${email}" th:value="${email}"
+						th:field="*{account.email}"></td>
+					<td><span th:if="${#fields.hasErrors('account.email')}"
+						th:errors="*{account.email}"></span></td>
+
+				</tr>
+				<tr>
+					<td><h3>
+							<i>Role</i>
+						</h3>
+						<ul>
+							<li th:each="aRole : ${allRoles}"><input type="checkbox"
+								name="role" th:field="*{account.authority}" th:value="${aRole}" />
+								<label th:text="${aRole}">Role</label></li>
+
+						</ul></td>
+					<td><span th:if="${#fields.hasErrors('account.authority')}"
+						th:errors="*{account.authority}"></span></td>
+				</tr>
+				<tr>
+					<td>
+						<button type="submit">Submit</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<a href="http://localhost:8080/">Home</a> <a
+			href="http://localhost:8080/logout">Log Out</a>
+	</div>
+</body>
+</html>

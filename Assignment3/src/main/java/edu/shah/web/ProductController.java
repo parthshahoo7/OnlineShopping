@@ -4,7 +4,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +31,7 @@ public class ProductController {
 	@Autowired
 	private CategoryDao categoryDao;
 
-//==========================RequestMapping for "/403"=====================================
+// ==========================RequestMapping for "/403"=====================================
 	@RequestMapping(value = "/403", method = RequestMethod.GET)
 	public String accessDenied(Model model, Principal principal) {
 		String username = principal.getName();
@@ -40,15 +39,42 @@ public class ProductController {
 		return "error/403";
 	}
 
+//=========================Product Search Page Implement to create relate to registration==============
+	@RequestMapping(value = "/productSearch", method = RequestMethod.GET)
+	public String searchProductForm1(@Valid Product product, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "productSearch";
+		}
+		model.addAttribute("product", new Product());
+		return "productSearch";
+	}
+
+	@RequestMapping(value = "/productSearch", method = RequestMethod.POST)
+	public String searchProduct1(@Valid Product product, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			return "productSearch";
+		}
+		return "redirect:/product?id=" + product.getId();
+	}
+
 //==========================Default Page===================================================
 //	Add this function to set home page 
-	@GetMapping("/")
-	public String gethomePage() {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String gethomePage(@Valid Product product, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "home";
+		}
+		model.addAttribute("product", new Product());
 		return "redirect:/home";
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String searchProductForm(@Valid Product product, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "home";
+		}
+		model.addAttribute("product", new Product());
 		return "home";
 	}
 

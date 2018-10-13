@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div>
-		<form action="#" th:action="@{/deleteProduct}" th:object="${product}"
+		<form action="#" th:action="@{/productSearch}" th:object="${product}"
 			method="post">
 			<table>
 				<tr>
@@ -22,8 +22,13 @@
 				</tr>
 			</table>
 		</form>
-		<a href="http://localhost:8080/registerHome">Home</a> <a
-			href="http://localhost:8080/logout">Log Out</a>
+		<p>
+			<a href="http://localhost:8080/logout">Log Out</a>
+		</p>
+		<p>
+			<a href="http://localhost:8080/registerHome">Home</a>
+		</p>
 	</div>
+
 </body>
 </html>

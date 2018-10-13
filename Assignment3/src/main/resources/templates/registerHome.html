@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 th:inline="text">HELLO[[${#httpServletRequest.remoteUser}]]!</h1>
+	<p>
+		<b>Roles you possess:</b>
+	</p>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<p>
+			<a href="http://localhost:8080/addProduct">AddProduct</a>
+		</p>
+		<p>
+			<a href="http://localhost:8080/deleteProduct">DeleteProduct</a>
+		</p>
+		<p>
+			<a href="http://localhost:8080/deleteCustomer">DeleteCustomer</a>
+		</p>
+	</div>
+	<div sec:authorize="hasRole('ROLE_EMP')">
+		<p>
+			<a href="http://localhost:8080/addProduct">AddProduct</a>
+		</p>
+	</div>
+	<div sec:authorize="hasRole('ROLE_CUSTOMER')">
+		<a href="http://localhost:8080/productSearch">Search Product</a>
+	</div>
+	<p>
+		<a href="http://localhost:8080/listProducts">Prduct List</a>
+	</p>
+	<p>
+		<b>Who you are to the system:</b>
+	</p>
+	<p>
+		Logged user: <span sec:authentication="name">Bob</span>
+
+	</p>
+	<p>
+		Roles: <span sec:authentication="authorities">[ROLE_CUSTOMER,
+			ROLE_ADMIN,ROLE_EMP]</span>
+	</p>
+	<a href="http://localhost:8080/">Default-Page</a>
+
+	<a href="http://localhost:8080/logout">Log Out</a>
+	<!-- <form th:action="@{/logout}" method="post">
+		<input type="submit" value="Sign Out" />
+	</form> -->
+</body>
+</html>
