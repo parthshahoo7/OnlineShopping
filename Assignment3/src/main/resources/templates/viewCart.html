@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<style>
+th, td {
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+	<form action="#" th:action="@{/viewCart}" th:object="${shoppingCart}"
+		method="post">
+		<div class="productlist" th:unless="${#lists.isEmpty(shoppingCart)}">
+
+			<h2>Cart:</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Product Name</th>
+						<th>Description</th>
+						<th>Cost</th>
+						<th>Quantity</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${shoppingCart.products}">
+						<td th:text="${{product.name}}">Default Name</td>
+						<td th:text="${{product.description}}">Default Description</td>
+						<td th:text="${{' $'+product.cost}}">Default Cost</td>
+						<td th:text="${{product.quantity}}">Default Quantity</td>
+					</tr>
+					<tr>
+						<td><label th:text="'Total Cost: $'+${totalCost}"></label></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</form>
+	<form action="#" th:action="@{/viewCart}" th:object="${shoppingCart}"
+		method="post">
+		<button type="submit" class="btn btn-secondary">CheckOut</button>
+	</form>
+	<a th:href="@{/listProducts}">Continue Shopping</a>
+	<a href="http://localhost:8080/registerHome">Home</a>
+	<a href="http://localhost:8080/logout">Log Out</a>
+</body>
+</html>

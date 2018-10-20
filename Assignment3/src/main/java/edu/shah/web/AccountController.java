@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,6 +25,7 @@ import edu.shah.db.AccountDao;
 import edu.shah.model.Account;
 import edu.shah.validator.Validation;
 
+@Scope("session")
 @Controller
 public class AccountController {
 	@Autowired

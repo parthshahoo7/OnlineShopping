@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+</head>
+<body>
+	<div class="purchaseOrderlist"
+		th:unless="${#lists.isEmpty(purchaseOrders)}">
+
+		<h2>List Of Orders</h2>
+		<h1>Here are your order Details:</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>PurchaseOrder ID</th>
+					<th>customer_name</th>
+					<th>po_date</th>
+					<th>prod_name</th>
+					<th>quantity</th>
+					<th>total_cost</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order : ${purchaseOrders}">
+					<td th:text="${{order.po_id}}">Default Product_Id</td>
+					<td th:text="${{order.customer_name}}">Default CustomerName</td>
+					<td th:text="${{order.po_date}}">Default Date</td>
+					<td th:text="${{order.prod_name}}">Default ProductName</td>
+					<td th:text="${{order.quantity}}">Default Quantity</td>
+					<td th:text="${{'$'+order.totalCost}}">Default TotalCost</td>
+					<td>
+						<form action="#" th:action="@{/checkout(id=${order.po_id})}"
+							th:object="${purchaseOrder}" method="post">
+							<button type="submit">View Order</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<a href="http://localhost:8080/registerHome">Home</a>
+	<a href="http://localhost:8080/logout">Log Out</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+</head>
+<body>
+	<form action="#" th:action="@{/checkout}" th:object="${purchaseOrder}"
+		method="post">
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<h2>Selected Customer Order Detail:</h2>
+		</div>
+		<div sec:authorize="hasRole('ROLE_CUSTOMER')">
+			<h2>Your Order Has Been Placed!!!</h2>
+			<h1>Here are your order Details:</h1>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<th>Po_Id</th>
+					<th>po_date</th>
+					<th>prod_name</th>
+					<th>quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="order : ${purchaseOrders}">
+					<td th:text="${{order.po_id}}">Default Product_Id</td>
+					<td th:text="${{order.po_date}}">Default Date</td>
+					<td th:text="${{order.prod_name}}">Default ProductName</td>
+					<td th:text="${{order.quantity}}">Default Quantity</td>
+
+				</tr>
+				<tr>
+					<td th:text="'Total Cost: $'+${totalCost}">Default TotalCost</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<a href="http://localhost:8080/registerHome">Home</a>
+	<a href="http://localhost:8080/logout">Log Out</a>
+</body>
+</html>

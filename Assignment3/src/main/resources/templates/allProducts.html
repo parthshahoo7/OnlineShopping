@@ -1,6 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" />
+<style>
+th, td {
+	padding: 5px;
+}
+</style>
+</head>
 <body>
 	<div class="productlist" th:unless="${#lists.isEmpty(products)}">
 
@@ -15,10 +28,11 @@
 					<th>Cost</th>
 					<th>Location</th>
 					<th>Discount</th>
+					<th>Quantity</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="product : ${products}">
+				<tr th:each="product : ${products.products}">
 					<td th:text="${{product.id}}">Default ID</td>
 					<td th:text="${{product.name}}">Default Name</td>
 					<td th:text="${{product.description}}">Default Description</td>
@@ -26,6 +40,26 @@
 					<td th:text="${{'$'+product.cost}}">Default Cost</td>
 					<td th:text="${{product.location}}">Default Location</td>
 					<td th:text="${{product.discount}}">Default Discount</td>
+					<td><div sec:authorize="hasRole('ROLE_CUSTOMER')">
+							<form action="#" th:action="@{/listProducts(id=${product.id})}"
+								th:object="${shoppingCart}" method="post">
+								<table>
+									<tr>
+										<td><input type="text" th:value="${Quanity}"
+											th:field=*{quantity}></td>
+										<td><button type="submit">AddtoCart</button>
+									</tr>
+								</table>
+							</form>
+						</div></td>
+				</tr>
+				<tr>
+					<td><div sec:authorize="hasRole('ROLE_CUSTOMER')">
+							<form action="#" th:action="@{/viewCart}"
+								th:object="${shoppingCart}" method="post">
+								<a th:href="@{/viewCart}">View Cart</a>
+							</form>
+						</div></td>
 				</tr>
 			</tbody>
 		</table>
