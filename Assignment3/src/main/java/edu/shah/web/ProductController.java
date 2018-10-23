@@ -170,20 +170,6 @@ public class ProductController {
 			model.addAttribute("totalCost", totalCost);
 			return "viewCart";
 		}
-		if (shoppingCart.getProducts().isEmpty()) {
-			model.addAttribute("purchaseOrders", purchaseOrderDao.getAllOrders());
-			int id = 0;
-			try {
-				if (purchaseOrder.getPo_id() == null) {
-					id = 0;
-				}
-			} catch (Exception e) {
-				id = 0;
-			}
-
-			return "redirect:/checkout?id=" + id;
-		}
-
 		purchaseOrder.setCustomer_name(principal.getName());
 		purchaseOrder.setPo_date(LocalDate.now().toString());
 		purchaseOrder.setTotalCost(Integer.toString(totalCost));
