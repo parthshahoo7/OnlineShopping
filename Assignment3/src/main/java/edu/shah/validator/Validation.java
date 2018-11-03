@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import edu.shah.web.WebAccount;
+import edu.shah.web.webModel.WebAccount;
 
 @Component
 public class Validation implements Validator {
@@ -25,7 +25,5 @@ public class Validation implements Validator {
 			errors.rejectValue("password", "Size.webAccount.password");
 		if (!webAccount.getPassword().equals(webAccount.getConfimPassword()))
 			errors.rejectValue("confimPassword", "Diff.webAccount.confimPassword");
-
 	}
-
 }

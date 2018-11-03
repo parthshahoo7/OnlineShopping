@@ -17,5 +17,4 @@ public interface PurchaseOrderDao {
 	public List<PurchaseOrder> getPurchaseOrderById(Long long1);
 
 	public List<PurchaseOrder> getPurchaseOrderByCustomerName(String name);
-
 }

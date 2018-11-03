@@ -2,16 +2,14 @@ package edu.shah.model;
 
 import java.util.ArrayList;
 
-import javax.validation.constraints.NotNull;
-
 public class Account {
-	@NotNull
+
 	private String email;
-	@NotNull
+
 	private String userName;
-	@NotNull
+
 	private String address;
-	@NotNull
+
 	private ArrayList<String> authority;
 
 	public Account(String email, String userName, String address, ArrayList<String> authority) {
@@ -57,5 +55,4 @@ public class Account {
 	public void setAuthority(ArrayList<String> authority) {
 		this.authority = authority;
 	}
-
 }

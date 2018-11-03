@@ -26,14 +26,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().antMatchers("/", "/login", "/home", "/listProducts/**").permitAll()
-				.antMatchers("/addProduct").hasAnyRole("EMP", "ADMIN").antMatchers("/orderHistory")
-				.hasAnyRole("CUSTOMER").antMatchers("/checkout").hasAnyRole("CUSTOMER", "ADMIN")
-				.antMatchers("/viewCart").hasRole("CUSTOMER").antMatchers("/deleteProduct").hasAnyRole("ADMIN")
-				.antMatchers("/browsePurchaseOrders").hasAnyRole("ADMIN").antMatchers("/product").hasAnyRole("CUSTOMER")
-				.antMatchers("/register/**").permitAll().antMatchers("/403").permitAll().anyRequest().authenticated()
-				.and().formLogin().failureUrl("/login?error").defaultSuccessUrl("/registerHome").loginPage("/login")
-				.permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login?logout").invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
+				.antMatchers("/static/**").permitAll().antMatchers("/images/**").permitAll().antMatchers("/fonts/**")
+				.permitAll().antMatchers("/deleteCustomer").hasAnyRole("ADMIN").antMatchers("/img/**/**").permitAll()
+				.antMatchers("/addedProduct").hasAnyRole("ADMIN", "EMP").antMatchers("/js/**").permitAll()
+				.antMatchers("/css/**").permitAll().antMatchers("/addProduct").hasAnyRole("EMP", "ADMIN")
+				.antMatchers("/orderHistory").hasAnyRole("CUSTOMER").antMatchers("/checkout")
+				.hasAnyRole("CUSTOMER", "ADMIN", "EMP").antMatchers("/viewCart").hasRole("CUSTOMER")
+				.antMatchers("/deleteProduct").hasAnyRole("ADMIN").antMatchers("/browsePurchaseOrders")
+				.hasAnyRole("ADMIN", "EMP").antMatchers("/product").hasAnyRole("CUSTOMER").antMatchers("/register/**")
+				.permitAll().antMatchers("/403").permitAll().anyRequest().authenticated().and().formLogin()
+				.failureUrl("/login?error").defaultSuccessUrl("/registerHome").loginPage("/login").permitAll().and()
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
+				.invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll();
 	}
 
 	@Override

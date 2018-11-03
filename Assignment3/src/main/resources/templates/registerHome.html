@@ -1,70 +1,270 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" />
+<!--All Css Here-->
+<!-- Material Design Iconic Font CSS-->
+<link rel="stylesheet"
+	href="../static/css/material-design-iconic-font.min.css"
+	th:href="@{/css/material-design-iconic-font.min.css}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<!-- Animate CSS-->
+<link rel="stylesheet" href="../static/css/animate.css"
+	th:href="@{css/animate.css}">
+<!-- Owl Carousel CSS-->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<!-- Slick Slider CSS-->
+<link rel="stylesheet" href="../static/css/slick.css"
+	th:href="@{/css/slick.css}">
+<!-- Meanmenu CSS-->
+<link rel="stylesheet" href="../static/css/meanmenu.min.css"
+	th:href="@{/css/meanmenu.min.css}">
+<!-- Jquery Ui CSS-->
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<!-- Nice Select CSS-->
+<link rel="stylesheet" href="../css/nice-select.css">
+<!-- Easy Zoom CSS-->
+<link rel="stylesheet" href="../css/easyzoom.css">
+<!-- Venobox CSS-->
+<link rel="stylesheet" href="../css/venobox.css">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Style CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<!-- Modernizr Js -->
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Online Retail Store</title>
+<!-- <link rel="icon" href="/favicon.ico" th:href="@{favicon.ico}"> -->
 </head>
 <body>
-	<h1 th:inline="text">Hey [[${#httpServletRequest.remoteUser}]]!</h1>
-	<p>
-		<b>Roles you possess:</b>
-	</p>
-	<div sec:authorize="hasRole('ROLE_ADMIN')">
-		<p>
-			<a href="http://localhost:8080/deleteProduct">DeleteProduct</a>
-		</p>
-		<p>
-			<a href="http://localhost:8080/deleteCustomer">DeleteCustomer</a>
-		</p>
-		<p>
-			<a href="http://localhost:8080/browsePurchaseOrders">ViewPurchaseOrder</a>
-		</p>
+	<div th:insert="~{fragments/afterRegistrationFragment :: header}"></div>
+	<div th:insert="~{fragments/afterRegistrationFragment :: slider}"></div>
+	<div class="blog-area mb-70">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<!--Section Title Start-->
+					<div class="section-title text-center">
+						<h3>Instruction</h3>
+					</div>
+					<!--Section Title End-->
+				</div>
+			</div>
+			<div class="row blog-slider owl-carousel">
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/listProducts">Shop Products</a>
+							</h3>
+							<p>
+								If you want purchase a product you need to click on the <b>Shop
+									Products</b> which is a subItem of the <b>PRODUCTS</b>. The site
+								will then redirect you to a new page which will display all the
+								products contained within our current inventory. Please insert
+								the quantity of the product you wish to buy and then add it to
+								your cart. <b>Note:</b> your order <b>will not</b> be placed
+								until you checkout from your cart.
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/addProduct">Add Product</a>
+							</h3>
+							<p>
+								If you would like to add a new product then you need to click on
+								the <b>Add Product</b> which is a subItem of the <b>PRODUCTS</b>.
+								You need to fill out the form with the product information that
+								you want to add.<b>Note:</b> If you are a customer, you will not
+								be able to add a product. This is reserved for <b>administrators
+									and employee accounts only</b>.
+							</p>
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/deleteProduct">Delete Product</a>
+							</h3>
+							<p>
+								If you would like to delete an existing product then you need to
+								click on the <b>Delete Product</b> which is a subItem of the <b>PRODUCTS</b>
+								You need to provide the Product Id to delete that product. <b>Note:</b>
+								If you are a customer you will not be able to delete a product.
+								This functionality is reserved for <b>administrator only</b>.
+							</p>
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/productSearch">Search Product</a>
+							</h3>
+							<p>
+								If you would like to Search an existing product then you need
+								click on the <b>Search Product</b> which is a subItem of the <b>PRODUCTS</b>.
+								You will be asked to specify the ID of the product you would
+								like to search.<b>you can use this functionality from any
+									page. It is already included in header</b>. <b>Note:</b> If you are
+								a Employee or Administrator accessing this site, you will not be
+								able to search a Product. This functionality is reserved for <b>Customers
+									only</b>.
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/deleteCustomer">Delete
+									Customer</a>
+							</h3>
+							<p>
+								If you would like to delete an existing Customer Account then
+								you need to click<b>Delete Customer</b>. from the Menu. You will
+								be asked to specify the Email ID of the customer you would like
+								to delete. <b>Note:</b> If you are a customer or Employee
+								accessing this site, you will not be able to delete a customer
+								Account. This functionality is reserved for <b>administrator
+									accounts only</b>.
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/browsePurchaseOrders">View
+									Customer Purchase Orders</a>
+							</h3>
+							<p>
+								If you would like to view the purchase orders, then click on <b>VIEW
+									PURCHASE ORDERS</b> from the menu. If you haven't signed in the
+								system will prompt you for your user name and password. Once
+								you've signed in you will be able to view all customer purchase
+								orders. <b>Note:</b> If you are a customer or employee accessing
+								this site, you will not be able to see this feature. This
+								functionality is reserved for <b>administrator only</b>.
+							</p>
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/orderHistory">Order History</a>
+							</h3>
+							<p>
+								If you would like to view the Order History, then click on <b>Order
+									History </b> from the menu. If you haven't signed in the system
+								will prompt you for your user name and password. Once you've
+								signed in you will be able to view all your purchase orders. <b>Note:</b>
+								If you are a Administrator or employee accessing this site, you
+								will not be able to see this feature. This functionality is
+								reserved for <b>Customer only</b>.
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+				<div class="col-12">
+					<!--Single Blog Start-->
+					<div class="single-blog">
+						<div class="blog-img img-full"></div>
+						<div class="blog-content">
+							<h3 class="blog-title">
+								<a href="http://localhost:8080/viewCart">View Cart</a>
+							</h3>
+							<p>
+								If you would like to view your cart, then click on <b>View
+									Cart </b> from the menu. If you haven't signed in the system will
+								prompt you for your user name and password. Once you've signed
+								in you will be able to view your cart. <b>Note:</b> If you are a
+								Administrator or employee accessing this site, you will not be
+								able to see this feature. This functionality is reserved for <b>Customer
+									only</b>.
+							</p>
+						</div>
+					</div>
+					<!--Single Blog Start-->
+				</div>
+			</div>
+		</div>
 	</div>
-	<div sec:authorize="hasRole('ROLE_EMP')">
-		<p>
-			<a href="http://localhost:8080/addProduct">AddProduct</a>
-		</p>
-	</div>
-	<div sec:authorize="hasRole('ROLE_CUSTOMER')">
-		<p>
-			<a href="http://localhost:8080/productSearch">Search Product</a>
-		</p>
-		<p>
-			<a href="http://localhost:8080/viewCart">View Cart</a>
-		</p>
-		<p>
-			<a href="http://localhost:8080/orderHistory">Order History</a>
-		</p>
-
-	</div>
-	<p>
-		<a href="http://localhost:8080/listProducts">Prduct List</a>
-	</p>
-
-	<p>
-		<b>Who you are to the system:</b>
-	</p>
-	<p>
-		Logged user: <span sec:authentication="name">Bob</span>
-
-	</p>
-	<p>
-		Roles: <span sec:authentication="authorities">[ROLE_CUSTOMER,
-			ROLE_ADMIN,ROLE_EMP]</span>
-	</p>
-	<a href="http://localhost:8080/">Default-Page</a>
-
-	<a href="http://localhost:8080/logout">Log Out</a>
-	<!-- <form th:action="@{/logout}" method="post">
-		<input type="submit" value="Sign Out" />
-	</form> -->
+	<div th:insert="~{fragments/afterRegistrationFragment :: footer}"></div>
+	<!--All Js Here-->
+	<!--Jquery 1.12.4-->
+	<script src="../js/vendor/jquery-1.12.4.min.js"></script>
+	<!--Imagesloaded-->
+	<script src="../js/imagesloaded.pkgd.min.js"></script>
+	<!--Isotope-->
+	<script src="../js/isotope.pkgd.min.js"></script>
+	<!--Waypoints-->
+	<script src="../js/waypoints.min.js"></script>
+	<!--Carousel-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!--Slick Slider-->
+	<script src="../js/slick.min.js"></script>
+	<!--Meanmenu-->
+	<script src="../js/jquery.meanmenu.min.js"></script>
+	<!--Instafeed-->
+	<script src="../js/instafeed.min.js"></script>
+	<!--Countdown-->
+	<script src="../js/jquery.countdown.min.js"></script>
+	<!--Counterup-->
+	<script src="../js/jquery.counterup.min.js"></script>
+	<!--ScrollUp-->
+	<script src="../js/jquery.scrollUp.min.js"></script>
+	<!--Jquery Ui-->
+	<script src="../js/jquery-ui.js"></script>
+	<!--Nice Select-->
+	<script src="../js/jquery.nice-select.min.js"></script>
+	<!--Easy Zoom-->
+	<script src="../js/easyzoom.min.js"></script>
+	<!--Wow-->
+	<script src="../js/wow.min.js"></script>
+	<!--Venobox-->
+	<script src="../js/venobox.min.js"></script>
+	<!--Popper-->
+	<script src="../js/popper.min.js"></script>
+	<!--Bootstrap-->
+	<script src="../js/bootstrap.min.js"></script>
+	<!--Plugins-->
+	<script src="../js/plugins.js"></script>
+	<!--Main Js-->
+	<script src="../js/main.js"></script>
 </body>
 </html>

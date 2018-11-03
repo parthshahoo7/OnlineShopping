@@ -5,27 +5,12 @@ import java.util.ArrayList;
 public class Product {
 
 	private int id;
-
-	public Product(int id, String name, String description, Object category, String cost, ArrayList<Object> location,
-			String discount, int quantity) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.category = category;
-		this.cost = cost;
-		this.location = location;
-		this.discount = discount;
-		this.quantity = quantity;
-	}
-
 	private String name;
 	private String description;
 	private Object category;
 	private String cost;
 	private ArrayList<Object> location;
 	private String discount;
-	private int quantity;
 
 	public Product(int id, String name, String description, Category category, String cost, ArrayList<Object> location,
 			String discount) {
@@ -97,13 +82,5 @@ public class Product {
 
 	public void setDiscount(String discount) {
 		this.discount = discount;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 }

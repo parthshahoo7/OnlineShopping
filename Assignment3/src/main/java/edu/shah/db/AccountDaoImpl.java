@@ -15,8 +15,8 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import edu.shah.model.Account;
-import edu.shah.web.AccountMapper;
-import edu.shah.web.WebAccount;
+import edu.shah.web.Mapper.AccountMapper;
+import edu.shah.web.webModel.WebAccount;
 
 @Repository
 public class AccountDaoImpl implements AccountDao {
@@ -62,10 +62,10 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public int deleteAccount(String email) {
+	public int deleteAccount(Account account) {
 		// TODO Auto-generated method stub
 		String SQL = "delete from inventorydb.account where email=?";
-		jdbcTemplate.update(SQL, email);
+		jdbcTemplate.update(SQL, account.getEmail());
 		return 1;
 	}
 
@@ -104,5 +104,4 @@ public class AccountDaoImpl implements AccountDao {
 		}
 		return 1;
 	}
-
 }

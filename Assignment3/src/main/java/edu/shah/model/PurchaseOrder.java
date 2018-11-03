@@ -89,5 +89,4 @@ public class PurchaseOrder {
 	public void addProduct_name(String prod_name) {
 		this.productName.add(prod_name);
 	}
-
 }

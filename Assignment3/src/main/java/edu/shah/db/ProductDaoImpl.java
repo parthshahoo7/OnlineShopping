@@ -15,7 +15,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import edu.shah.model.Product;
-import edu.shah.web.ProductMapper;
+import edu.shah.web.Mapper.ProductMapper;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -127,5 +127,4 @@ public class ProductDaoImpl implements ProductDao {
 		System.out.println("Updated Record with ID=" + product.getId());
 		return 1;
 	}
-
 }

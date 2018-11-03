@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import edu.shah.web.LocationMapper;
+import edu.shah.web.Mapper.LocationMapper;
 
 @Repository
 public class LocationDaoImpl implements LocationDao {

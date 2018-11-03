@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import edu.shah.web.AuthorityMapper;
+import edu.shah.web.Mapper.AuthorityMapper;
 
 @Repository
 public class AuthorityDaoImpl implements AuthorityDao {
@@ -29,5 +29,4 @@ public class AuthorityDaoImpl implements AuthorityDao {
 		List<String> roles = jdbcTemplate.query(SQL, new Object[] { email }, new AuthorityMapper());
 		return roles;
 	}
-
 }

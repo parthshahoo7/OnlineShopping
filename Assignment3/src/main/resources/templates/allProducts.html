@@ -1,70 +1,196 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet" />
+<!--All Css Here-->
+<!-- Material Design Iconic Font CSS-->
+<link rel="stylesheet"
+	href="../static/css/material-design-iconic-font.min.css"
+	th:href="@{/css/material-design-iconic-font.min.css}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<!-- Animate CSS-->
+<link rel="stylesheet" href="../static/css/animate.css"
+	th:href="@{css/animate.css}">
+<!-- Owl Carousel CSS-->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<!-- Slick Slider CSS-->
+<link rel="stylesheet" href="../static/css/slick.css"
+	th:href="@{/css/slick.css}">
+<!-- Meanmenu CSS-->
+<link rel="stylesheet" href="../static/css/meanmenu.min.css"
+	th:href="@{/css/meanmenu.min.css}">
+<!-- Jquery Ui CSS-->
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<!-- Nice Select CSS-->
+<link rel="stylesheet" href="../css/nice-select.css">
+<!-- Easy Zoom CSS-->
+<link rel="stylesheet" href="../css/easyzoom.css">
+<!-- Venobox CSS-->
+<link rel="stylesheet" href="../css/venobox.css">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Style CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
 <style>
-th, td {
-	padding: 5px;
+.mybutton:hover {
+	background-color: #eeb013;
+	border: 1px solid;
 }
 </style>
+<!-- Modernizr Js -->
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Online Retail Store</title>
+<!-- <link rel="icon" href="/favicon.ico" th:href="@{favicon.ico}"> -->
 </head>
 <body>
-	<div class="productlist" th:unless="${#lists.isEmpty(products)}">
-
-		<h2>The list of Products</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Category</th>
-					<th>Cost</th>
-					<th>Location</th>
-					<th>Discount</th>
-					<th>Quantity</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="product : ${products.products}">
-					<td th:text="${{product.id}}">Default ID</td>
-					<td th:text="${{product.name}}">Default Name</td>
-					<td th:text="${{product.description}}">Default Description</td>
-					<td th:text="${{product.category}}">Default Category</td>
-					<td th:text="${{'$'+product.cost}}">Default Cost</td>
-					<td th:text="${{product.location}}">Default Location</td>
-					<td th:text="${{product.discount}}">Default Discount</td>
-					<td><div sec:authorize="hasRole('ROLE_CUSTOMER')">
-							<form action="#" th:action="@{/listProducts(id=${product.id})}"
-								th:object="${shoppingCart}" method="post">
-								<table>
+	<div th:insert="~{fragments/afterRegistrationFragment :: header}"></div>
+	<div class="wrapper">
+		<!--Page Banner2 Area Start-->
+		<div class="page-banner2-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="page-banner2-title">
+							<h2>Shopping Cart</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Page Banner Area End-->
+		<!--Breadcrumb Start-->
+		<div class="breadcrumb-Area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="breadcrumb-content">
+							<ul>
+								<li><a href="http://localhost:8080/registerHome">Home</a></li>
+								<li class="active"><a
+									href="http://localhost:8080/listProducts">Shop Product</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Breadcrumb End-->
+		<!--Shopping Cart Area Strat-->
+		<div class="Shopping-cart-area mb-90">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="table-content table-responsive productlist"
+							th:unless="${#lists.isEmpty(products)}">
+							<table class="table">
+								<thead>
 									<tr>
-										<td><input type="text" th:value="${Quanity}"
-											th:field=*{quantity}></td>
-										<td><button type="submit">AddtoCart</button>
+										<th class="anadi-product-remove">Product ID</th>
+										<th class="anadi-product-thumbnail">Product Name</th>
+										<th class="cart-product-name">Product Description</th>
+										<th class="anadi-product-price">Category</th>
+										<th class="anadi-product-price">Product Cost</th>
+										<th class="anadi-product-price">Location</th>
+										<th class="anadi-product-quantity">Discount</th>
+										<th class="anadi-product-subtotal"
+											sec:authorize="hasRole('ROLE_CUSTOMER')">Quantity</th>
 									</tr>
-								</table>
-							</form>
-						</div></td>
-				</tr>
-				<tr>
-					<td><div sec:authorize="hasRole('ROLE_CUSTOMER')">
-							<form action="#" th:action="@{/viewCart}"
-								th:object="${shoppingCart}" method="post">
-								<a th:href="@{/viewCart}">View Cart</a>
-							</form>
-						</div></td>
-				</tr>
-			</tbody>
-		</table>
-		<a href="http://localhost:8080/registerHome">Home</a> <a
-			href="http://localhost:8080/logout">Log Out</a>
+								</thead>
+								<tbody>
+									<tr th:each="prod : ${products}">
+										<td class="anadi-product-name" th:text="${{prod.product.id}}">Default
+											ID</td>
+										<td class="anadi-product-name"
+											th:text="${{prod.product.name}}">Default Name</td>
+										<td class="anadi-product-name"
+											th:text="${{prod.product.description}}">Default
+											Description</td>
+										<td class="anadi-product-name"
+											th:text="${{prod.product.category}}">Default Category</td>
+										<td class="anadi-product-name"
+											th:text="${{'$'+prod.product.cost}}">Default Cost</td>
+										<td class="anadi-product-name"
+											th:text="${{prod.product.location}}">Default Location</td>
+										<td class="anadi-product-name"
+											th:text="${{prod.product.discount}}">Default Discount</td>
+										<td sec:authorize="hasRole('ROLE_CUSTOMER')">
+											<form action="#"
+												th:action="@{/listProducts(id=${prod.product.id})}"
+												th:object="${shoppingCart}" id="form1" method="post">
+												<table>
+													<tr>
+														<td class="anadi-product-name"><input type="text"
+															th:value="${Quanity}" th:field=*{quantity}>
+															<button sec:authorize="hasRole('ROLE_CUSTOMER')"
+																type="submit" class="btn btn-dark mybutton">AddtoCart</button></td>
+													</tr>
+												</table>
+											</form>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="row" sec:authorize="hasRole('ROLE_CUSTOMER')">
+							<div class="col-12">
+								<div class="cart-page-total">
+									<a th:href="@{/viewCart}">View Cart</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<div th:insert="~{fragments/afterRegistrationFragment :: footer}"></div>
+	<!--All Js Here-->
+	<!--Jquery 1.12.4-->
+	<script src="../js/vendor/jquery-1.12.4.min.js"></script>
+	<!--Imagesloaded-->
+	<script src="../js/imagesloaded.pkgd.min.js"></script>
+	<!--Isotope-->
+	<script src="../js/isotope.pkgd.min.js"></script>
+	<!--Waypoints-->
+	<script src="../js/waypoints.min.js"></script>
+	<!--Carousel-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!--Slick Slider-->
+	<script src="../js/slick.min.js"></script>
+	<!--Meanmenu-->
+	<script src="../js/jquery.meanmenu.min.js"></script>
+	<!--Instafeed-->
+	<script src="../js/instafeed.min.js"></script>
+	<!--Countdown-->
+	<script src="../js/jquery.countdown.min.js"></script>
+	<!--Counterup-->
+	<script src="../js/jquery.counterup.min.js"></script>
+	<!--ScrollUp-->
+	<script src="../js/jquery.scrollUp.min.js"></script>
+	<!--Jquery Ui-->
+	<script src="../js/jquery-ui.js"></script>
+	<!--Nice Select-->
+	<script src="../js/jquery.nice-select.min.js"></script>
+	<!--Easy Zoom-->
+	<script src="../js/easyzoom.min.js"></script>
+	<!--Wow-->
+	<script src="../js/wow.min.js"></script>
+	<!--Venobox-->
+	<script src="../js/venobox.min.js"></script>
+	<!--Popper-->
+	<script src="../js/popper.min.js"></script>
+	<!--Bootstrap-->
+	<script src="../js/bootstrap.min.js"></script>
+	<!--Plugins-->
+	<script src="../js/plugins.js"></script>
+	<!--Main Js-->
+	<script src="../js/main.js"></script>
 </body>
 </html>

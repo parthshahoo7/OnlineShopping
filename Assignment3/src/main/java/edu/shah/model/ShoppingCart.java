@@ -8,29 +8,29 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(value = "session")
 public class ShoppingCart {
-	private ArrayList<Product> products;
+	private ArrayList<LineItem> lineItems;
 	private int quantity;
 
 	public ShoppingCart() {
 		super();
 		// TODO Auto-generated constructor stub
-		products = new ArrayList<Product>();
+		lineItems = new ArrayList<LineItem>();
 	}
 
-	public void addProducts(Product product) {
-		products.add(product);
+	public void addLineItems(LineItem lineItem) {
+		lineItems.add(lineItem);
 	}
 
-	public ArrayList<Product> getProducts() {
-		return products;
+	public ArrayList<LineItem> getLineItems() {
+		return lineItems;
 	}
 
-	public void setProducts(ArrayList<Product> products) {
-		this.products = products;
+	public void setLineItems(ArrayList<LineItem> lineItems) {
+		this.lineItems = lineItems;
 	}
 
 	public void clear() {
-		products.clear();
+		lineItems.clear();
 	}
 
 	public int getQuantity() {

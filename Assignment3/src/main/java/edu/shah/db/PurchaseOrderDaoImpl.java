@@ -21,7 +21,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import edu.shah.model.PurchaseOrder;
-import edu.shah.web.PurchaseOrderMapper;
+import edu.shah.web.Mapper.PurchaseOrderMapper;
 
 @Repository
 public class PurchaseOrderDaoImpl implements PurchaseOrderDao {

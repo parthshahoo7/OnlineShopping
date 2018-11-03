@@ -19,5 +19,4 @@ public class Authority {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
-
 }
