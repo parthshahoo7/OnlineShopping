@@ -1,0 +1,402 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--All Css Here-->
+<!-- Material Design Iconic Font CSS-->
+<link rel="stylesheet"
+	href="../static/css/material-design-iconic-font.min.css"
+	th:href="@{/css/material-design-iconic-font.min.css}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<!-- Animate CSS-->
+<link rel="stylesheet" href="../static/css/animate.css"
+	th:href="@{css/animate.css}">
+<!-- Owl Carousel CSS-->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<!-- Slick Slider CSS-->
+<link rel="stylesheet" href="../static/css/slick.css"
+	th:href="@{/css/slick.css}">
+<!-- Meanmenu CSS-->
+<link rel="stylesheet" href="../static/css/meanmenu.min.css"
+	th:href="@{/css/meanmenu.min.css}">
+<!-- Jquery Ui CSS-->
+<link rel="stylesheet" href="../static/css/jquery-ui.css"
+	th:href="@{/css/jquery-ui.css}">
+<!-- Nice Select CSS-->
+<link rel="stylesheet" href="../static/css/nice-select.css"
+	th:href="@{/css/nice-select.css}">
+<!-- Easy Zoom CSS-->
+<link rel="stylesheet" href="../static/css/easyzoom.css"
+	th:href="@{/css/easyzoom.css}">
+<!-- Venobox CSS-->
+<link rel="stylesheet" href="../static/css/venobox.css"
+	th:href="@{/css/venobox.css}">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<!-- Style CSS -->
+<link rel="stylesheet" href="../static/css/style.css"
+	th:href="@{/css/style.css}">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../static/css/responsive.css"
+	th:href="@{/css/responsive.css}">
+<!-- Modernizr Js -->
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<!--Header Area Start-->
+		<header>
+			<div class="header-container" th:fragment="header">
+				<!--Header Top Area Start-->
+				<div class="header-top-area header-top-4 black-bg">
+					<div class="container">
+						<div class="row">
+							<!--Header Top Right Start-->
+							<div class="col-md-12">
+								<div class="header-top-right text-right">
+									<div class="menu-my-account">
+										<ul>
+											<li><a href="my-account.html" aria-hidden="true"
+												style="visibility: hidden">My account</a> <!--Header Top Dropdown-->
+												<!-- <ul class="ht-dropdown account-menu">
+													<li><a href="login-register.html">Login Register</a></li>
+													<li><a href="my-account.html">My Account</a></li>
+													<li><a href="cart.html">Shopping cart</a></li>
+													<li><a href="checkout.html">Checkout</a></li>
+												</ul> Header Top Dropdown --></li>
+											<li><a href="http://localhost:8080/register">Register</a></li>
+											<li><a href="http://localhost:8080/login"
+												th:if="${#authorization.expression('!isAuthenticated()')}"><span
+													aria-hidden="true"></span>&nbsp;Login</a></li>
+											<li><a href="http://localhost:8080/logout"
+												th:if="${#authorization.expression('isAuthenticated()')}"
+												onclick="$('#form').submit();"><span aria-hidden="true"></span>&nbsp;Logout</a>
+												<form style="visibility: hidden" id="form" method="post"
+													action="#" th:action="@{/logout}"></form></li>
+											<li><a href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
+											<li><a href="checkout.html"><i
+													class="fa fa-check-square-o"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!--Header Top Right End-->
+						</div>
+					</div>
+				</div>
+				<!--Header Top Area End-->
+				<!--Header Middle Area Start-->
+				<div class="header-middle-area header-middle-4 black-bg pt-40 pb-40">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4 col-lg-5">
+								<div class="menu-logo-box">
+									<!--Logo Start-->
+									<div class="logo">
+										<a href="http://localhost:8080/"><img
+											src="images/logo.png" alt=""></a>
+									</div>
+									<!--Logo Start-->
+								</div>
+							</div>
+							<div class="col-md-8 col-lg-7">
+								<div class="search-cart-box text-lg-right">
+									<!--Header Search Start-->
+									<div class="header-search">
+										<form action="#" th:action="@{/home}" th:object="${product}"
+											method="post">
+											<div class="form-input form-4">
+												<input name="id" id="id" value="Search product..."
+													placeholder="Search product..."
+													onblur="if(this.value==''){this.value='Search product...'}"
+													onfocus="if(this.value=='Search product...'){this.value=''}"
+													type="text" th:value="${ID}">
+												<button type="submit" class="header-search-btn"></button>
+											</div>
+										</form>
+									</div>
+									<!--Header Search End-->
+									<!--Mini Cart Start-->
+									<div class="mini-cart">
+										<ul>
+											<li><a href="/viewCart.html"> <span
+													class="cart-icon"></span>
+											</a> <!--Cart Dropdown Start-->
+												<ul class="cart-dropdown">
+													<li>
+														<p class="cart-btn">
+															<a href="cart.html">View cart</a> <a href="checkout.html">Checkout</a>
+														</p>
+													</li>
+												</ul> <!--Cart Dropdown End--></li>
+										</ul>
+									</div>
+									<!--Mini Cart End-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Header Middle Area End-->
+				<!--Header Bottom Area Start-->
+				<div class="header-bottom-area header-bottom-4 header-sticky">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<!--Logo Sticky Start-->
+								<div class="logo-sticky">
+									<a href="http://localhost:8080/"><img src="images/logo.png"
+										alt=""></a>
+								</div>
+								<!--Logo Sticky End-->
+								<!--Header Menu Start-->
+								<div class="header-menu-area text-center">
+									<nav>
+										<ul class="main-menu">
+											<li><a href="http://localhost:8080/">Home</a>
+											<li><a href="http://localhost:8080/addProduct">AddProduct</a></li>
+											<li><a href="http://localhost:8080/deleteProduct">DeleteProduct</a></li>
+											<li><a href="http://localhost:8080/listProducts">All
+													Products</a></li>
+										</ul>
+									</nav>
+								</div>
+								<!--Header Menu End-->
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<!--Mobile Menu Area Start-->
+								<div class="mobile-menu d-lg-none"></div>
+								<!--Mobile Menu Area End-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Header Bottom Area End-->
+			</div>
+		</header>
+		<!--Header Area Start-->
+		<!--Slider Area Start-->
+		<div class="slider-area-3" th:fragment="slider">
+			<div class="hero-slider-3 owl-carousel">
+				<div class="single-slider-3"
+					style="background-image: url(../images/nike.jpeg);">
+					<div class="container">
+						<div class="slider-content slider-content-3">
+							<h5>Sale up to 70% off</h5>
+							<h1>
+								Black and White Pair T-shirt in <span>$20</span>
+							</h1>
+							<a class="shop-btn" href="#">SHOP NOW</a>
+						</div>
+					</div>
+				</div>
+				<div class="single-slider-3"
+					style="background-image: url(../images/hp.jpg);">
+					<div class="container">
+						<div class="slider-content-4">
+							<h1>Sale!</h1>
+							<h3>
+								<span>10% off HP products!!! </span>
+							</h3>
+							<a class="shop-btn" href="#">SHOP NOW</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Slider Area End-->
+		<!--Footer Area Start-->
+		<footer>
+			<div class="footer-container" th:fragment="footer">
+				<!--Footer Top Area Start-->
+				<div class="footer-top-area black-bg pt-85 pb-50">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-3 col-md-6 col-12">
+								<!--Single Footer Widget Start-->
+								<div class="single-footer-widget mb-35">
+									<div class="footer-title">
+										<h3>Shop Location</h3>
+									</div>
+									<p>LSC, University Of Scranton</p>
+									<div class="contact-info">
+										<ul>
+											<li><i class="fa fa-home"></i> Scranton, PA, USA</li>
+											<li><i class="fa fa-phone"></i> <a href="#">+1
+													xxx-xxx-xxxx</a></li>
+											<li><i class="fa fa-envelope-o"></i> <a
+												href="https://outlook.office.com/"> R-Shop@info.com</a></li>
+										</ul>
+									</div>
+								</div>
+								<!--Single Footer Widget End-->
+							</div>
+							<div class="col-lg-3 col-md-6 col-12">
+								<!--Single Footer Widget Start-->
+								<div class="single-footer-widget mb-35">
+									<div class="footer-title">
+										<h3>UseFul Links</h3>
+									</div>
+									<ul class="link-widget">
+										<li><a href="http://localhost:8080/listProducts">Shop
+												Product</a></li>
+										<li><a href="http://localhost:8080/addProduct">Add
+												Product</a></li>
+										<li><a href="http://localhost:8080/productSearch">Search
+												Product</a></li>
+										<li><a href="http://localhost:8080/deleteProduct">Delete
+												Product</a></li>
+									</ul>
+								</div>
+								<!--Single Footer Widget End-->
+							</div>
+							<div class="col-lg-3 col-md-6 col-12">
+								<!--Single Footer Widget Start-->
+								<div class="single-footer-widget mb-35">
+									<div class="footer-title">
+										<h3>More Links</h3>
+										<ul class="link-widget">
+											<li><a href="http://localhost:8080/deleteCustomer">Delete
+													Customer</a></li>
+											<li><a href="http://localhost:8080/browsePurchaseOrders">View
+													Customer Purchase Order</a></li>
+											<li><a href="http://localhost:8080/viewCart">View
+													Cart</a></li>
+											<li><a href="http://localhost:8080/orderHistory">Order
+													History</a></li>
+										</ul>
+									</div>
+								</div>
+								<!--Single Footer Widget End-->
+							</div>
+							<div class="col-lg-3 col-md-6 col-12">
+								<!--Single Footer Widget Start-->
+								<div class="single-footer-widget mb-35">
+									<div class="footer-title">
+										<h3>Newsletter</h3>
+									</div>
+									<div class="footer-mailchimp">
+										<form
+											action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+											method="post" id="mc-embedded-subscribe-form"
+											name="mc-embedded-subscribe-form"
+											class="popup-subscribe-form validate" target="_blank"
+											novalidate>
+											<div id="mc_embed_signup_scroll">
+												<div id="mc-form" class="mc-form subscribe-form">
+													<input id="mc-email" type="email" autocomplete="off"
+														placeholder="Enter your email here" /> <span class="icon"><i
+														class="fa fa-angle-right"></i></span>
+													<button id="mc-submit">Subscribe</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="footer-title">
+										<h3>Stay Connected</h3>
+									</div>
+									<ul class="social-icons">
+										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+										<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+										<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+										<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+										<li><a href="#"><i class="fa fa-rss"></i></a></li>
+									</ul>
+								</div>
+								<!--Single Footer Widget End-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Footer Top Area End-->
+				<!--Footer Middle Area Start-->
+				<div class="footer-middle-area black-bg">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="footer-payments-image">
+									<img src="../img/payment/payment-icon.png" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Footer Middle Area End-->
+				<!--Footer Bottom Area Start-->
+				<div class="footer-bottom-area">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="footer-copyright">
+									<p>
+										Copyright &copy; <a href="#">R-SHOP</a> All Rights Reserved
+									</p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="footer-design-by text-right">
+									<p>Designed by Parth Shah</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Footer Bottom Area End-->
+			</div>
+		</footer>
+		<!--Footer Area End-->
+	</div>
+	<!--All Js Here-->
+	<!--Jquery 1.12.4-->
+	<script src="../js/vendor/jquery-1.12.4.min.js"></script>
+	<!--Imagesloaded-->
+	<script src="../js/imagesloaded.pkgd.min.js"></script>
+	<!--Isotope-->
+	<script src="../js/isotope.pkgd.min.js"></script>
+	<!--Waypoints-->
+	<script src="../js/waypoints.min.js"></script>
+	<!--Carousel-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!--Slick Slider-->
+	<script src="../js/slick.min.js"></script>
+	<!--Meanmenu-->
+	<script src="../js/jquery.meanmenu.min.js"></script>
+	<!--Instafeed-->
+	<script src="../js/instafeed.min.js"></script>
+	<!--Countdown-->
+	<script src="../js/jquery.countdown.min.js"></script>
+	<!--Counterup-->
+	<script src="../js/jquery.counterup.min.js"></script>
+	<!--ScrollUp-->
+	<script src="../js/jquery.scrollUp.min.js"></script>
+	<!--Jquery Ui-->
+	<script src="../js/jquery-ui.js"></script>
+	<!--Nice Select-->
+	<script src="../js/jquery.nice-select.min.js"></script>
+	<!--Easy Zoom-->
+	<script src="../js/easyzoom.min.js"></script>
+	<!--Wow-->
+	<script src="../js/wow.min.js"></script>
+	<!--Venobox-->
+	<script src="../js/venobox.min.js"></script>
+	<!--Popper-->
+	<script src="../js/popper.min.js"></script>
+	<!--Bootstrap-->
+	<script src="../js/bootstrap.min.js"></script>
+	<!--Plugins-->
+	<script src="../js/plugins.js"></script>
+	<!--Main Js-->
+	<script src="../js/main.js"></script>
+</body>
+</html>

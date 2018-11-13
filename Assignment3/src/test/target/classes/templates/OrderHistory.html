@@ -1,0 +1,173 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<!--All Css Here-->
+<!-- Material Design Iconic Font CSS-->
+<link rel="stylesheet"
+	href="../static/css/material-design-iconic-font.min.css"
+	th:href="@{/css/material-design-iconic-font.min.css}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<!-- Animate CSS-->
+<link rel="stylesheet" href="../static/css/animate.css"
+	th:href="@{css/animate.css}">
+<!-- Owl Carousel CSS-->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<!-- Slick Slider CSS-->
+<link rel="stylesheet" href="../static/css/slick.css"
+	th:href="@{/css/slick.css}">
+<!-- Meanmenu CSS-->
+<link rel="stylesheet" href="../static/css/meanmenu.min.css"
+	th:href="@{/css/meanmenu.min.css}">
+<!-- Jquery Ui CSS-->
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<!-- Nice Select CSS-->
+<link rel="stylesheet" href="../css/nice-select.css">
+<!-- Easy Zoom CSS-->
+<link rel="stylesheet" href="../css/easyzoom.css">
+<!-- Venobox CSS-->
+<link rel="stylesheet" href="../css/venobox.css">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Style CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<style>
+.mybutton:hover {
+	background-color: #eeb013;
+	border: 1px solid;
+}
+</style>
+<!-- Modernizr Js -->
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Online Retail Store</title>
+<!-- <link rel="icon" href="/favicon.ico" th:href="@{favicon.ico}"> -->
+</head>
+<body>
+	<div th:insert="~{fragments/afterRegistrationFragment :: header}"></div>
+	<div class="wrapper">
+		<!--Page Banner2 Area Start-->
+		<div class="page-banner2-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="page-banner2-title">
+							<h2>Order History</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Page Banner Area End-->
+		<!--Breadcrumb Start-->
+		<div class="breadcrumb-Area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="breadcrumb-content">
+							<ul>
+								<li><a href="http://localhost:8080/registerHome">Home</a></li>
+								<li class="active"><a
+									href="http://localhost:8080/orderHistory">Order History</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Breadcrumb End-->
+		<!--Shopping Cart Area Strat-->
+		<div class="Shopping-cart-area mb-90">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="table-content table-responsive productlist"
+							th:unless="${#lists.isEmpty(purchaseOrders)}">
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="anadi-product-remove">Purchase Order ID</th>
+										<th class="cart-product-name">Purchase Order Date</th>
+										<th class="anadi-product-price">Product Name</th>
+										<th class="anadi-product-price">Quantity</th>
+										<th class="anadi-product-price">Total Cost</th>
+										<th class="anadi-product-quantity">View Order Detail</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="order: ${purchaseOrders}">
+										<td class="anadi-product-name" th:text="${{order.po_id}}">Default
+											Product_Id</td>
+										<td class="anadi-product-name" th:text="${{order.po_date}}">Default
+											Date</td>
+										<td class="anadi-product-name" th:text="${{order.prod_name}}">Default
+											ProductName</td>
+										<td class="anadi-product-name" th:text="${{order.quantity}}">Default
+											Quantity</td>
+										<td class="anadi-product-name"
+											th:text="${{'$'+order.totalCost}}">Default TotalCost</td>
+										<td class="anadi-product-name">
+											<form action="#" th:action="@{/checkout(id=${order.po_id})}"
+												th:object="${purchaseOrder}" method="post">
+												<button type="submit" class="btn btn-dark mybutton">View
+													Detail</button>
+											</form>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:insert="~{fragments/afterRegistrationFragment :: footer}"></div>
+	<!--All Js Here-->
+	<!--Jquery 1.12.4-->
+	<script src="../js/vendor/jquery-1.12.4.min.js"></script>
+	<!--Imagesloaded-->
+	<script src="../js/imagesloaded.pkgd.min.js"></script>
+	<!--Isotope-->
+	<script src="../js/isotope.pkgd.min.js"></script>
+	<!--Waypoints-->
+	<script src="../js/waypoints.min.js"></script>
+	<!--Carousel-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!--Slick Slider-->
+	<script src="../js/slick.min.js"></script>
+	<!--Meanmenu-->
+	<script src="../js/jquery.meanmenu.min.js"></script>
+	<!--Instafeed-->
+	<script src="../js/instafeed.min.js"></script>
+	<!--Countdown-->
+	<script src="../js/jquery.countdown.min.js"></script>
+	<!--Counterup-->
+	<script src="../js/jquery.counterup.min.js"></script>
+	<!--ScrollUp-->
+	<script src="../js/jquery.scrollUp.min.js"></script>
+	<!--Jquery Ui-->
+	<script src="../js/jquery-ui.js"></script>
+	<!--Nice Select-->
+	<script src="../js/jquery.nice-select.min.js"></script>
+	<!--Easy Zoom-->
+	<script src="../js/easyzoom.min.js"></script>
+	<!--Wow-->
+	<script src="../js/wow.min.js"></script>
+	<!--Venobox-->
+	<script src="../js/venobox.min.js"></script>
+	<!--Popper-->
+	<script src="../js/popper.min.js"></script>
+	<!--Bootstrap-->
+	<script src="../js/bootstrap.min.js"></script>
+	<!--Plugins-->
+	<script src="../js/plugins.js"></script>
+	<!--Main Js-->
+	<script src="../js/main.js"></script>
+</body>
+</html>

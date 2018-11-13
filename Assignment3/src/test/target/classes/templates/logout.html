@@ -1,0 +1,144 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<!--All Css Here-->
+<!-- Material Design Iconic Font CSS-->
+<link rel="stylesheet"
+	href="../static/css/material-design-iconic-font.min.css"
+	th:href="@{/css/material-design-iconic-font.min.css}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<!-- Animate CSS-->
+<link rel="stylesheet" href="../static/css/animate.css"
+	th:href="@{css/animate.css}">
+<!-- Owl Carousel CSS-->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<!-- Slick Slider CSS-->
+<link rel="stylesheet" href="../static/css/slick.css"
+	th:href="@{/css/slick.css}">
+<!-- Meanmenu CSS-->
+<link rel="stylesheet" href="../static/css/meanmenu.min.css"
+	th:href="@{/css/meanmenu.min.css}">
+<!-- Jquery Ui CSS-->
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<!-- Nice Select CSS-->
+<link rel="stylesheet" href="../css/nice-select.css">
+<!-- Easy Zoom CSS-->
+<link rel="stylesheet" href="../css/easyzoom.css">
+<!-- Venobox CSS-->
+<link rel="stylesheet" href="../css/venobox.css">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Style CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<!-- Modernizr Js -->
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div th:insert="~{fragments/defaultFragment :: header}"></div>
+	<div class="wrapper">
+		<!--Page Banner2 Area Start-->
+		<div class="page-banner2-area" style="background-color: #222222;">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="page-banner2-title">
+							<h2 style="color: white;">Logout</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Page Banner Area End-->
+		<!--Breadcrumb Start-->
+		<div class="breadcrumb-Area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="breadcrumb-content">
+							<ul>
+								<li><a href="http://localhost:8080/">Home</a></li>
+								<li class="active"><a href="http://localhost:8080/logout">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Breadcrumb End-->
+		<!--Login Register Area Strat-->
+		<div class="login-register-area mb-60" style="text-align: center;">
+			<div class="container" style="display: inline-block">
+				<div>
+					<!--Login Form Start-->
+					<div class="col-md-6"
+						style="text-align: center; display: inline-block">
+						<div class="customer-login-register">
+							<div class="form-login-title">
+								<h2>Logout</h2>
+							</div>
+							<div class="login-form">
+								<form th:action="@{/logout}" method="post">
+									<div class="login-submit">
+										<button type="submit" class="form-button" value="Login">Logout</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!--Login Form End-->
+				</div>
+			</div>
+		</div>
+		<!--Login Register Area End-->
+	</div>
+	<div th:insert="~{fragments/defaultFragment :: footer}"></div>
+	<!--All Js Here-->
+	<!--Jquery 1.12.4-->
+	<script src="../js/vendor/jquery-1.12.4.min.js"></script>
+	<!--Imagesloaded-->
+	<script src="../js/imagesloaded.pkgd.min.js"></script>
+	<!--Isotope-->
+	<script src="../js/isotope.pkgd.min.js"></script>
+	<!--Waypoints-->
+	<script src="../js/waypoints.min.js"></script>
+	<!--Carousel-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!--Slick Slider-->
+	<script src="../js/slick.min.js"></script>
+	<!--Meanmenu-->
+	<script src="../js/jquery.meanmenu.min.js"></script>
+	<!--Instafeed-->
+	<script src="../js/instafeed.min.js"></script>
+	<!--Countdown-->
+	<script src="../js/jquery.countdown.min.js"></script>
+	<!--Counterup-->
+	<script src="../js/jquery.counterup.min.js"></script>
+	<!--ScrollUp-->
+	<script src="../js/jquery.scrollUp.min.js"></script>
+	<!--Jquery Ui-->
+	<script src="../js/jquery-ui.js"></script>
+	<!--Nice Select-->
+	<script src="../js/jquery.nice-select.min.js"></script>
+	<!--Easy Zoom-->
+	<script src="../js/easyzoom.min.js"></script>
+	<!--Wow-->
+	<script src="../js/wow.min.js"></script>
+	<!--Venobox-->
+	<script src="../js/venobox.min.js"></script>
+	<!--Popper-->
+	<script src="../js/popper.min.js"></script>
+	<!--Bootstrap-->
+	<script src="../js/bootstrap.min.js"></script>
+	<!--Plugins-->
+	<script src="../js/plugins.js"></script>
+	<!--Main Js-->
+	<script src="../js/main.js"></script>
+</body>
+</html>

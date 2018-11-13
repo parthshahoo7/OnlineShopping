@@ -1,0 +1,232 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<!--All Css Here-->
+<!-- Material Design Iconic Font CSS-->
+<link rel="stylesheet"
+	href="../static/css/material-design-iconic-font.min.css"
+	th:href="@{/css/material-design-iconic-font.min.css}">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="../static/css/font-awesome.min.css"
+	th:href="@{/css/font-awesome.min.css}">
+<!-- Animate CSS-->
+<link rel="stylesheet" href="../static/css/animate.css"
+	th:href="@{css/animate.css}">
+<!-- Owl Carousel CSS-->
+<link rel="stylesheet" href="../static/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<!-- Slick Slider CSS-->
+<link rel="stylesheet" href="../static/css/slick.css"
+	th:href="@{/css/slick.css}">
+<!-- Meanmenu CSS-->
+<link rel="stylesheet" href="../static/css/meanmenu.min.css"
+	th:href="@{/css/meanmenu.min.css}">
+<!-- Jquery Ui CSS-->
+<link rel="stylesheet" href="../css/jquery-ui.css">
+<!-- Nice Select CSS-->
+<link rel="stylesheet" href="../css/nice-select.css">
+<!-- Easy Zoom CSS-->
+<link rel="stylesheet" href="../css/easyzoom.css">
+<!-- Venobox CSS-->
+<link rel="stylesheet" href="../css/venobox.css">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Style CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<style>
+.error {
+	color: red;
+	font-style: italic;
+}
+</style>
+<!-- Modernizr Js -->
+<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div th:insert="~{fragments/afterRegistrationFragment :: header}"></div>
+	<div class="wrapper">
+		<!--Page Banner2 Area Start-->
+		<div class="page-banner2-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="page-banner2-title">
+							<h2>Add Product</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Page Banner Area End-->
+		<!--Breadcrumb Start-->
+		<div class="breadcrumb-Area">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="breadcrumb-content">
+							<ul>
+								<li><a href="http://localhost:8080/">Home</a></li>
+								<li class="active"><a
+									href="http://localhost:8080/addProduct"> Add Product</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Breadcrumb End-->
+		<!--Login Register Area Strat-->
+		<div class="login-register-area mb-60">
+			<div class="container"
+				style="text-align: center; display: inline-block">
+				<div>
+					<!--Register Form Start-->
+					<div class="col-md-6"
+						style="text-align: center; display: inline-block">
+						<div class="customer-login-register register-pt-0">
+							<div class="form-register-title">
+								<h2>Add Product</h2>
+							</div>
+							<div class="register-form">
+								<form action="#" th:action="@{/addProduct}"
+									th:object="${product}" method="post">
+									<div class="form-fild">
+										<p>
+											<label>Product ID <span class="required">*</span></label>
+										</p>
+										<input type="text" th:value="${ID}" th:field="*{id}">
+									</div>
+									<div class="form-fild">
+										<p>
+											<label>ProductName <span class="required">*</span></label>
+										</p>
+										<input type="text" th:text="${Name}" th:value="${Name}"
+											th:field="*{name}">
+									</div>
+									<div class="form-fild">
+										<p>
+											<label>ProductDiscription <span class="required">*</span></label>
+										</p>
+										<input type="text" th:text="${Description}"
+											th:value="${Description}" th:field="*{description}">
+									</div>
+									<div class="form-fild">
+										<p>
+											<label>ProductCost <span class="required">*</span></label>
+										</p>
+										<input type="text" th:text="${Cost}" th:value="${Cost}"
+											th:field="*{cost}">
+									</div>
+									<div class=" form-fild">
+										<p>
+											<label>Category <span class="required">*</span></label>
+										</p>
+										<div class="form-check">
+											<ul style="list-style-type: none;">
+												<li th:each="aCategory : ${allCategory}">
+													<div class="custom-control custom-radio">
+
+														<input type="radio" name="Category" th:field="*{category}"
+															th:value="${aCategory}" class="custom-control-input" />
+														<label th:for="${#ids.prev('category')}"
+															th:text="${aCategory}" class="custom-control-label">Category</label>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class=" form-fild">
+										<p>
+											<label>WareHouse <span class="required">*</span></label>
+										</p>
+										<div class="form-check">
+											<ul style="list-style-type: none;">
+												<li th:each="aWarehouse : ${allWarehouse}">
+													<div class="custom-control custom-checkbox">
+														<input type="checkbox" name="Warehouse"
+															th:field="*{location}" th:value="${aWarehouse}"
+															class="custom-control-input" /> <label
+															th:for="${#ids.prev('location')}" th:text="${aWarehouse}"
+															class="custom-control-label">Location</label>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class=" form-fild">
+										<p>
+											<label>Discount <span class="required">*</span></label>
+										</p>
+										<div class="form-check">
+											<ul style="list-style-type: none;">
+												<li th:each="aDiscount : ${allDiscount}">
+													<div class="custom-control custom-radio">
+														<input type="radio" name="Discount" th:field="*{discount}"
+															th:value="${aDiscount}" class="custom-control-input" />
+														<label th:for="${#ids.prev('discount')}"
+															th:text="${aDiscount}" class="custom-control-label">Discount</label>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="register-submit">
+										<button type="submit" class="form-button">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!--Register Form End-->
+				</div>
+			</div>
+		</div>
+		<!--Login Register Area End-->
+	</div>
+	<div th:insert="~{fragments/afterRegistrationFragment :: footer}"></div>
+	<!--All Js Here-->
+	<!--Jquery 1.12.4-->
+	<script src="../js/vendor/jquery-1.12.4.min.js"></script>
+	<!--Imagesloaded-->
+	<script src="../js/imagesloaded.pkgd.min.js"></script>
+	<!--Isotope-->
+	<script src="../js/isotope.pkgd.min.js"></script>
+	<!--Waypoints-->
+	<script src="../js/waypoints.min.js"></script>
+	<!--Carousel-->
+	<script src="../js/owl.carousel.min.js"></script>
+	<!--Slick Slider-->
+	<script src="../js/slick.min.js"></script>
+	<!--Meanmenu-->
+	<script src="../js/jquery.meanmenu.min.js"></script>
+	<!--Instafeed-->
+	<script src="../js/instafeed.min.js"></script>
+	<!--Countdown-->
+	<script src="../js/jquery.countdown.min.js"></script>
+	<!--Counterup-->
+	<script src="../js/jquery.counterup.min.js"></script>
+	<!--ScrollUp-->
+	<script src="../js/jquery.scrollUp.min.js"></script>
+	<!--Jquery Ui-->
+	<script src="../js/jquery-ui.js"></script>
+	<!--Nice Select-->
+	<script src="../js/jquery.nice-select.min.js"></script>
+	<!--Easy Zoom-->
+	<script src="../js/easyzoom.min.js"></script>
+	<!--Wow-->
+	<script src="../js/wow.min.js"></script>
+	<!--Venobox-->
+	<script src="../js/venobox.min.js"></script>
+	<!--Popper-->
+	<script src="../js/popper.min.js"></script>
+	<!--Bootstrap-->
+	<script src="../js/bootstrap.min.js"></script>
+	<!--Plugins-->
+	<script src="../js/plugins.js"></script>
+	<!--Main Js-->
+	<script src="../js/main.js"></script>
+</body>
+</html>
